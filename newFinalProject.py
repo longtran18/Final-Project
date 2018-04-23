@@ -50,7 +50,7 @@ class Player(pygame.sprite.Sprite):
         width = 40
         height = 60
         self.image = pygame.image.load("Final Project/Resources/batman.png")
-        self.image = pygame.transform.scale(self.image,(48,56))
+        self.image = pygame.transform.scale(self.image,(20,23))
         # self.image.fill(RED)
  
         # Set a referance to the image rect.
@@ -199,12 +199,45 @@ class Level_01(Level):
         Level.__init__(self, player)
  
         # Array with width, height, x, and y of platform
-        level = [[800, 70, 0, 530],
-                 [200, 50, 150, 400],
-                 [200, 50, 450, 400],
-                 [200, 50, 300, 270],
-                 [200, 50, 150, 140],
-                 [200, 50, 450, 140],
+        level = [[800, 70, 0, 0],
+                 [10, 90, 330, 510],
+                 [10, 30, 370, 480],
+                 [10, 30, 370, 540],
+                 [50, 10, 370, 540],
+                 [100, 10, 370, 560],
+                 [10, 140, 460, 410],
+                 [10, 120, 490, 450],
+                 [10, 90, 540, 480],
+                 [10, 30, 500, 410],
+                 [10, 30, 570, 360],
+                 [10, 30, 380, 360],
+                 [90, 10, 530, 480],
+                 [50, 10, 370, 500],
+                 [100, 10, 530, 440],
+                 [100, 10, 280, 470],
+                 [100, 10, 320, 430],
+                 [100, 10, 280, 430],
+                 [40, 10, 330, 350],
+                 [40, 10, 570, 350],
+                 [10, 80, 620, 260],
+                 [10, 90, 310, 260],
+                 [10, 100, 250, 260],
+                 [10, 120, 220, 260],
+                 [10, 90, 180, 260],
+                 [10, 130, 120, 260],
+                 [10, 70, 50, 260],
+                 [10, 70, 400, 260],
+                 [10, 100, 440, 260],
+                 [10, 120, 480, 260],
+                 [10, 80, 540, 260],
+                 [10, 100, 670, 260],
+                 [10, 50, 700, 260],
+                 [10, 120, 760, 260],
+                 [70, 10, 380, 400],
+                 [80, 10, 500, 400],
+                 [730, 10, 70, 200],
+                 #[700, 10, 100, 400],
+                 #[730, 10, 70, 450],
                  ]
  
         # Go through the array above and add platforms
@@ -241,7 +274,7 @@ def main():
     player.level = current_level
  
     player.rect.x = 340
-    player.rect.y = 520
+    player.rect.y = 580
     active_sprite_list.add(player)
  
     # Loop until the user clicks the close button.
