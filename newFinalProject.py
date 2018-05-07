@@ -17,7 +17,7 @@ http://programarcadegames.com/python_examples/f.php?file=platform_scroller.py
 http://programarcadegames.com/python_examples/f.php?file=platform_moving.py
 http://programarcadegames.com/python_examples/sprite_sheets/
 """
- 
+
 import pygame
 
 # Global constants
@@ -166,7 +166,7 @@ class Level(object):
         self.player = player
          
         # Background image
-        self.background = None
+        #self.background = pygame.image.load("Final Project/Resources/800x600.png")
  
     # Update everythign on this level
     def update(self):
@@ -187,7 +187,6 @@ class Level(object):
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
  
- 
 # Create platforms for the level
 class Level_01(Level):
     """ Definition for level 1. """
@@ -199,7 +198,7 @@ class Level_01(Level):
         Level.__init__(self, player)
  
         # Array with width, height, x, and y of platform
-        level = [[800, 70, 0, 0],
+        level = [#[800, 70, 0, 0],
                  [10, 90, 330, 520],
                  [10, 30, 370, 480],
                  [10, 30, 370, 540],
@@ -241,8 +240,59 @@ class Level_01(Level):
                  [10, 120, 760, 260],
                  [70, 10, 380, 400],
                  [80, 10, 500, 400],
+                 [10, 80, 50, 430],
+                 [90, 10, 90, 560],
+                 [40, 10, 0, 560],
+                 [70, 10, 50, 510],
+                 [10, 50, 80, 520],
+                 [10, 50, 20, 420],
+                 [10, 50, 90, 430],
+                 [50, 10, 680, 410],
+                 [10, 100, 700, 470],
+                 [30, 10, 700, 470],
                  [730, 10, 70, 200],
+                 [730, 10, 0, 160],
                  #[700, 10, 100, 400],
+                 [10, 60, 100, 0],
+                 [10, 70, 100, 90],
+                 [10, 30, 130, 0],
+                 [10, 100, 130, 60],
+                 [10, 130, 160, 0],
+                 [10, 90, 190, 0],
+                 [10, 40, 190, 120],
+                 [10, 10, 220, 0],
+                 [10, 110, 220, 50],
+                 [10, 0, 250, 0],
+                 [10, 120, 250, 40],
+                 [10, 110, 280, 0],
+                 [10, 20, 280, 140],
+                 [10, 50, 310, 0],
+                 [10, 70, 310, 90],
+                 [10, 110, 340, 0],
+                 [10, 20, 340, 140],
+                 [10, 120, 370, 0],
+                 [10, 10, 370, 150],
+                 [10, 10, 400, 0],
+                 [10, 130, 400, 40],
+                 [10, 70, 430, 0],
+                 [10, 50, 430, 110],
+                 [10, 50, 460, 0],
+                 [10, 70, 460, 90],
+                 [10, 40, 490, 0],
+                 [10, 80, 490, 80],
+                 [10, 110, 520, 0],
+                 [10, 20, 520, 140],
+                 [10, 10, 550, 0],
+                 [10, 120, 550, 40],
+                 [10, 60, 580, 0],
+                 [10, 70, 580, 90],
+                 [10, 0, 610, 0],
+                 [10, 130, 610, 30],
+                 [10, 10, 640, 0],
+                 [10, 120, 640, 40],
+                 [10, 50, 670, 0],
+                 [10, 70, 670, 90],
+                 [10, 130, 700, 0],
                  #[730, 10, 70, 450],
                  ]
  
@@ -253,7 +303,6 @@ class Level_01(Level):
             block.rect.y = platform[3]
             block.player = self.player
             self.platform_list.add(block)
- 
  
 def main():
     """ Main Program """
