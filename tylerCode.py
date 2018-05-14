@@ -1,22 +1,38 @@
-""" 
-Base of game
+"""
+Sample Python/Pygame Programs
+Simpson College Computer Science
+http://programarcadegames.com/
+http://simpson.edu/computer-science/
+ 
+From:
 http://programarcadegames.com/python_examples/f.php?file=platform_jumper.py
+ 
 Explanation video: http://youtu.be/BCxWJgN4Nnc
  
-Help from Tyler's code
-https://github.com/T-Smith18/FinalProject/blob/master/main.py
+Part of a series:
+http://programarcadegames.com/python_examples/f.php?file=move_with_walls_example.py
+http://programarcadegames.com/python_examples/f.php?file=maze_runner.py
+http://programarcadegames.com/python_examples/f.php?file=platform_jumper.py
+http://programarcadegames.com/python_examples/f.php?file=platform_scroller.py
+http://programarcadegames.com/python_examples/f.php?file=platform_moving.py
+http://programarcadegames.com/python_examples/sprite_sheets/
 """
-
+#Week 1: Created Project Proposal
+# Week 2: Made jumping circle
+# Week 3: Swapped template to one more suitable for project,read and broke and undid different parts, figured out how to use custom graphics 
 import pygame
+from pygame import *
+from time import sleep
 
+ 
 # Global constants
  
 # Colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
-GREEN = (34, 139, 34)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
+GREEN = (0, 255, 0)
+RED = (255, 52, 52)
+BLUE = (52, 52, 255)
  
 # Screen dimensions
 SCREEN_WIDTH = 800
@@ -34,13 +50,14 @@ class Player(pygame.sprite.Sprite):
         # Call the parent's constructor
         super().__init__()
  
-        # Create an image of the block, and fill it with a color.
-        # This could also be an image loaded from the disk.
+        
+        # Creates Player image
         width = 40
         height = 60
-        self.image = pygame.image.load("Final Project/Resources/mario.png")
+        #self.image = pygame.Surface([width, height])
+        self.image=pygame.image.load("Final Project/Resources/batman.png")
         self.image = pygame.transform.scale(self.image,(20,23))
-        # self.image.fill(RED)
+        #self.image.fill(RED)
  
         # Set a referance to the image rect.
         self.rect = self.image.get_rect()
@@ -70,6 +87,7 @@ class Player(pygame.sprite.Sprite):
             elif self.change_x < 0:
                 # Otherwise if we are moving left, do the opposite.
                 self.rect.left = block.rect.right
+                
  
         # Move up/down
         self.rect.y += self.change_y
@@ -117,7 +135,7 @@ class Player(pygame.sprite.Sprite):
     def go_left(self):
         """ Called when the user hits the left arrow. """
         self.change_x = -6
-
+ 
     def go_right(self):
         """ Called when the user hits the right arrow. """
         self.change_x = 6
@@ -154,17 +172,8 @@ class Level(object):
         self.enemy_list = pygame.sprite.Group()
         self.player = player
          
-        # Flag image
-        self.flag = pygame.image.load("Final Project/Resources/flag.png")
-        self.flag = pygame.transform.scale(self.flag,(100,160))
         # Background image
-        self.background = pygame.image.load("Final Project/Resources/back.png")
-        self.background = pygame.transform.scale(self.background,(800,600))
-        # Invisible block image
-        self.invis = pygame.image.load("Final Project/Resources/invis.png")
-        # Screen size
-        self.size = [SCREEN_WIDTH, SCREEN_HEIGHT]
-        self.screen = pygame.display.set_mode(self.size)
+        self.background = pygame.image.load("Final Project/Resources/800x600.png")
  
     # Update everythign on this level
     def update(self):
@@ -176,16 +185,15 @@ class Level(object):
         """ Draw everything on this level. """
  
         # Draw the background
+        #screen.fill(BLUE)
+        self.size = [SCREEN_WIDTH, SCREEN_HEIGHT]
+        self.screen = pygame.display.set_mode(self.size)
         self.screen.blit(self.background, (0, 0))
-        # Draw the flag
-        self.screen.blit(self.flag, (-10, 0))
-        # Draw the invisible block
-        self.screen.blit(self.invis, (100, 200))
-        
  
         # Draw all the sprite lists that we have
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
+ 
  
 # Create platforms for the level
 class Level_01(Level):
@@ -196,10 +204,10 @@ class Level_01(Level):
  
         # Call the parent constructor
         Level.__init__(self, player)
-
  
-        # Array with width, height, x, and y of platform
-        level = [[10, 90, 330, 520],
+        # Array with width, height, x, and y of platform,put platforms in here
+        level = [#[800, 70, 0, 0],
+                 [10, 90, 330, 520],
                  [10, 30, 370, 480],
                  [10, 30, 370, 540],
                  [50, 10, 370, 540],
@@ -250,12 +258,9 @@ class Level_01(Level):
                  [50, 10, 680, 410],
                  [10, 100, 700, 470],
                  [30, 10, 700, 470],
-
-                 #Upper Surface Blocks
-                 [670, 10, 70, 200],
+                 [730, 10, 70, 200],
                  [730, 10, 0, 160],
-
-                 #Final Blocks
+                 #[700, 10, 100, 400],
                  [10, 60, 100, 0],
                  [10, 70, 100, 90],
                  [10, 30, 130, 0],
@@ -296,8 +301,7 @@ class Level_01(Level):
                  [10, 50, 670, 0],
                  [10, 70, 670, 90],
                  [10, 130, 700, 0],
-                 #uncomment line below to cheat
-                 #[700, 10, 100, 400],
+                 #[730, 10, 70, 450],
                  ]
  
         # Go through the array above and add platforms
@@ -308,6 +312,7 @@ class Level_01(Level):
             block.player = self.player
             self.platform_list.add(block)
  
+ 
 def main():
     """ Main Program """
     pygame.init()
@@ -316,7 +321,7 @@ def main():
     size = [SCREEN_WIDTH, SCREEN_HEIGHT]
     screen = pygame.display.set_mode(size)
  
-    pygame.display.set_caption("Super Mario Maze")
+    pygame.display.set_caption("Batman Maze")
  
     # Create the player
     player = Player()
@@ -333,9 +338,9 @@ def main():
     player.level = current_level
  
     player.rect.x = 340
-    player.rect.y = 580
+    player.rect.y = SCREEN_HEIGHT - player.rect.height
     active_sprite_list.add(player)
- 
+
     # Loop until the user clicks the close button.
     done = False
  
