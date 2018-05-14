@@ -248,8 +248,8 @@ class Level_01(Level):
                  [30, 10, 700, 470],
 
                  #Upper Surface Blocks
-                 [670, 10, 70, 200],
-                 [730, 10, 0, 160],
+                 [650, 10, 70, 200],
+                 [770, 10, 0, 160],
 
                  #Final Blocks
                  [10, 60, 100, 0],
@@ -379,7 +379,7 @@ def main():
         # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
  
         # Limit to 60 frames per second
-        clock.tick(60)
+        clock.tick(100)
  
         # Go ahead and update the screen with what we've drawn.
         pygame.display.flip()
